@@ -57,11 +57,12 @@ export class CrearUsuarioComponent {
   /* El metodo utilizado es para acortar la longitud del ID */
   generarIdCorto(longitud: number): string {
     let idCompleto = uuidv4(); // Generar UUID
-    return idCompleto.substr(0, longitud); // Truncar a la longitud deseada
+    return idCompleto.substr(0, longitud); // longitud deseada
   }
 
   limpiarCampos() {
     this.usuarioForm.reset();
+    this.editandoUsuario = !this.editandoUsuario;
   }
   
 /*Metodo para pegar la información del usuario en el formulario  */
@@ -76,7 +77,7 @@ export class CrearUsuarioComponent {
     });
   }
 
-
+/* Metodo modificar usuario */
   agregarUsuario() {
     if (this.usuarioForm.valid) {
       let usuario: Usuario = {
@@ -116,7 +117,6 @@ export class CrearUsuarioComponent {
   }
   editarUsuario() {
     if (this.usuarioEditando && this.usuarioEditando.id) {
-      // Mostrar mensaje de confirmación
       Swal.fire({
         title: 'Editar usuario',
         text: '¿Estás seguro de que deseas editar este usuario?',
@@ -128,34 +128,27 @@ export class CrearUsuarioComponent {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-  
-          // Verificar si el id existe antes de asignarlo
           let idUsuarioEditando = this.usuarioEditando?.id || '';
-  
+          
           let usuarioEditado: Usuario = {
             ...this.usuarioEditando,
             nombre: this.usuarioForm.get('nombre')?.value,
             correo: this.usuarioForm.get('correo')?.value,
             rol: this.usuarioForm.get('rol')?.value,
             contrasena: this.usuarioForm.get('contrasena')?.value,
-            id: idUsuarioEditando // Asignar id
+            id: idUsuarioEditando
           };
-  
-          console.log(usuarioEditado.id);
-          // código para enviar la solicitud PUT
+          
           this.rest.putUsuario(usuarioEditado).subscribe(
             (response) => {
               this.userService.updateUser(usuarioEditado);
-              console.log("actualizado con exito");
-              this.limpiarCampos();
-  
+              console.log("actualizado con éxito");
+              this.router.navigate(['/lista-usuarios']);
               Swal.fire({
                 icon: 'success',
                 title: 'Usuario actualizado',
                 text: 'El usuario se ha actualizado con éxito.'
-              });
-              this.router.navigate(['/lista-usuarios']);
-
+              });  
             },
             (error) => {
               console.error('Error al actualizar el usuario:', error);
@@ -171,5 +164,7 @@ export class CrearUsuarioComponent {
       });
     }
   }
+  
+
   
 }

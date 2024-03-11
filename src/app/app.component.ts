@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   showLoginForm: boolean = true;
   showComponents: boolean = true;
 
-  constructor(private router:Router){
+  constructor(private router:Router, private userService:UserService){
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.showComponents = false; // Oculta los componentes al iniciar la navegación
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  
+
+
   onLoginSuccess() {
     this.isLogged = true;
     this.showLoginForm = false; // Oculta el formulario de inicio de sesión después de iniciar sesión

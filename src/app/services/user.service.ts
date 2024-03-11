@@ -29,12 +29,10 @@ export class UserService {
   }
   
   updateUser(user: any) {
-    let usuarios = this.usuarioSubject.value.map((u: any) => {
-      return u.id === user.id ? { ...u, ...user } : u;
-    });
+    let usuarios = this.usuarioSubject.value;
+    usuarios.push(user);
     this.usuarioSubject.next(usuarios);
-  }
-
+}
   selectedUser(usuario: Usuario) {
     this.usuarioSeleccionadoSubject.next(usuario);
   }

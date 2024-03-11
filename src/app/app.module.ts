@@ -17,6 +17,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
+import { ModificarUsuariosComponent } from './components/modificar-usuarios/modificar-usuarios.component';
 
 const routes: Routes = [
   { path: 'listar-usuarios', component: ListaUsuariosComponent },
@@ -32,6 +33,8 @@ const routes: Routes = [
     ListaUsuariosComponent,
     CrearUsuarioComponent,
     LoginComponent,
+    ModificarUsuariosComponent
+    
   ],
   imports: [
     BrowserModule,

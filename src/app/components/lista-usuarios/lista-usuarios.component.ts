@@ -58,7 +58,6 @@ export class ListaUsuariosComponent implements OnInit {
       }
     );
   }
-
   eliminarUsuario(id: any) {
     Swal.fire({
       title: 'Eliminar usuario',
@@ -105,7 +104,6 @@ export class ListaUsuariosComponent implements OnInit {
       this.userService.selectedUser(this.user);
       this.userService.setEditandoUsuario(true); 
       this.router.navigate(['/agregar-usuario']);
-
     }
   }
 
@@ -116,11 +114,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     let rol = localStorage.getItem('rolLogin')
-    this.isAdmin = rol === 'Administrador'
+    this.isAdmin = rol === 'Administrador';
     this.getListUsuarios();
-    this.userService.usuario$.subscribe((usuario) => {
-      this.usuarioArray = usuario;
-      this.getListUsuarios();
-    });
   }
 }
