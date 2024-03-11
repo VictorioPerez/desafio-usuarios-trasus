@@ -6,7 +6,7 @@
     <div class="containerButtonsToolBar">
       <button mat-button [routerLink]="['/listar-usuarios']">Listar Usuarios</button>
       <button mat-button [routerLink]="['/agregar-usuario']">Agregar Usuario</button>
-      <button mat-button (click)="logout()">Cerrar sesión</button>
+      <button mat-button (click)="logout()" [routerLink]="['/login']">Cerrar sesión</button>
     </div>
   </div>
 </mat-toolbar>

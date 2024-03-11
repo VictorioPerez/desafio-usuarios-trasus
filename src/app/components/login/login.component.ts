@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   @Output() loginSuccess: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private formBuilder: FormBuilder, private rest: RestService) {
+  constructor(private formBuilder: FormBuilder, private rest: RestService, private router:Router) {
     this.loginForm = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', Validators.required],
@@ -52,6 +53,7 @@ export class LoginComponent {
         localStorage.setItem('tokenLogin',JSON.stringify(response));
         localStorage.setItem('rolLogin',JSON.stringify(response)) 
         this.loginSuccess.emit();
+        this.router.navigate(['/listar-usuarios'])
       },
       (error) => {
         if (error.error.message == 'User not active') {

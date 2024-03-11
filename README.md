@@ -10,6 +10,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Para inicializar Json server:
     json-server --watch db.json
+Ubicación 'Desafio tecnico/desafio-tecnico-usuarios/src/app/DB'
 
 ### Información del proyecto
 
@@ -26,6 +27,8 @@ Para instalar dependencias del proyecto: npm install
     - Formulario reactivo
     - Observables 
     - HttpClient
+    - Servicios para comunicación entre componentes
+    - Modelos
 
 El desafío consta de 3 componentes 
     1-lista-usuarios

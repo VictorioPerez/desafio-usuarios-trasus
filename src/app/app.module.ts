@@ -21,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   { path: 'listar-usuarios', component: ListaUsuariosComponent },
   { path: 'agregar-usuario', component: CrearUsuarioComponent },
-  { path: '', redirectTo: '/listar-usuarios', pathMatch: 'full' }, // Ruta por defecto
+  {path:'login',component:LoginComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Ruta por defecto
   { path: '**', redirectTo: '/listar-usuarios' } // Ruta para manejar rutas desconocidas
 ];
 
