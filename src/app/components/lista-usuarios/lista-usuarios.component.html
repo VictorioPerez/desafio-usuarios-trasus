@@ -1,0 +1,91 @@
+<div class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por nombre o correo electrónico">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+  
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+  </ng-container>
+
+  <!-- correo Column -->
+  <ng-container matColumnDef="correo">
+    <th mat-header-cell *matHeaderCellDef>Correo</th>
+    <td mat-cell *matCellDef="let element">{{ element.correo }}</td>
+  </ng-container>
+
+  <!-- rol Column -->
+  <ng-container matColumnDef="rol">
+    <th mat-header-cell *matHeaderCellDef>Rol</th>
+    <td mat-cell *matCellDef="let element">{{ element.rol }}</td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="infoUsuario(element)" [disabled]="!isAdmin">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="eliminarUsuario(element.id)" [disabled]="!isAdmin">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+          <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+  </ng-container>
+
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+        <div class="list-item" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="list-item-header">
+            <h3>Información adicional:</h3>
+            <div class="list-item-id">ID: {{element.id}}</div>
+          </div>
+          <div class="list-item-content">
+            <div class="list-item-field"><strong>Nombre:</strong> {{element.nombre}}</div>
+            <div class="list-item-field"><strong>Correo:</strong> {{element.correo}}</div>
+            <div class="list-item-field"><strong>Rol:</strong> {{element.rol}}</div>
+          </div>
+          <div class="list-item-description">
+            {{element.description}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    
+
+  
+  <!-- Row definition -->
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
+

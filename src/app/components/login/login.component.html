@@ -1,0 +1,58 @@
+<div class="containerForm">
+  <form [formGroup]="loginForm" class="login-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input
+        matInput
+        formControlName="correo"
+        placeholder="Ingrese su usuario"
+      />
+      <mat-error
+        *ngIf="
+          loginForm.get('correo')?.invalid &&
+          (loginForm.get('correo')?.dirty || loginForm.get('correo')?.touched)
+        "
+      >
+        Usuario inválido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="contrasena"
+        placeholder="Ingrese su contraseña"
+      />
+      <mat-error
+        *ngIf="
+          loginForm.get('contrasena')?.invalid &&
+          (loginForm.get('contrasena')?.dirty ||
+            loginForm.get('contrasena')?.touched)
+        "
+      >
+        Contraseña inválida
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol" placeholder="Seleccione su rol">
+        <mat-option value="Usuario">Usuario</mat-option>
+        <mat-option value="Administrador">Administrador</mat-option>
+        <mat-option value="Otro">Otro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button 
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="login()"
+      [disabled]="loginForm.invalid"
+    >
+      Iniciar sesión
+    </button>
+  </form>
+</div>

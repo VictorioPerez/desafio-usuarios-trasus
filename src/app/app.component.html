@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <span>Desafio Usuarios TraSus</span>
+  <span class="example-spacer"></span>
+
+  <div *ngIf="isLogged">
+    <div class="containerButtonsToolBar">
+      <button mat-button [routerLink]="['/listar-usuarios']">Listar Usuarios</button>
+      <button mat-button [routerLink]="['/agregar-usuario']">Agregar Usuario</button>
+      <button mat-button (click)="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="contenedor">
+  <router-outlet></router-outlet>
+</div>

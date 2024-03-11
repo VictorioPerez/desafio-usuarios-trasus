@@ -1,0 +1,21 @@
+.containerForm{
+    padding: 20px;
+}
+.form-container {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+  }
+  .containerButtons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }

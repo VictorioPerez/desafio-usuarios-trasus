@@ -1,0 +1,88 @@
+<div class="containerForm">
+  <form
+    [formGroup]="usuarioForm"
+    (ngSubmit)="agregarUsuario()"
+    class="form-container"
+  >
+    <mat-form-field class="form-field">
+      <input matInput formControlName="nombre" placeholder="Nombre" />
+      <mat-label>Nombre</mat-label>
+      <mat-error
+        *ngIf="
+          usuarioForm.get('nombre')?.invalid &&
+          usuarioForm.get('nombre')?.touched
+        "
+      >
+        El nombre es requerido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        formControlName="correo"
+        placeholder="Correo electrónico"
+      />
+      <mat-label>Correo electrónico</mat-label>
+      <mat-error
+        *ngIf="
+          usuarioForm.get('correo')?.invalid &&
+          usuarioForm.get('correo')?.touched
+        "
+      >
+        Correo electrónico inválido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol">
+        <mat-option value="Usuario">Usuario</mat-option>
+        <mat-option value="Administrador">Administrador</mat-option>
+        <mat-option value="Otro">Otro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        formControlName="contrasena"
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Contraseña"
+      />
+      <mat-label>Contraseña</mat-label>
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+<div class="containerButtons">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="usuarioForm.invalid || editandoUsuario"
+      class="submit-button"
+    >
+      Agregar Usuario
+    </button>
+    <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="usuarioForm.invalid || !editandoUsuario"
+    (click)="editarUsuario()"
+    class="submit-button"
+  >
+    Editar Usuario
+  </button>
+
+  </div>
+  </form>
+</div>

@@ -1,0 +1,18 @@
+{
+  "usuarios": [
+    {
+      "id": "f8",
+      "nombre": "icctorinox",
+      "correo": "routing@gmail.com",
+      "rol": "Administrador",
+      "contrasena": "123141"
+    },
+    {
+      "id": "c5",
+      "nombre": "vicc",
+      "correo": "routing@gmailn12123123uevo.com",
+      "rol": "Administrador",
+      "contrasena": "1341412"
+    }
+  ]
+}
