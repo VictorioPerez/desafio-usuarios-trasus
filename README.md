@@ -26,6 +26,7 @@ Para instalar dependencias del proyecto: npm install
     - Formulario reactivo
     - Observables 
     - HttpClient
+    - Servicios para comunicación entre componentes 
 
 El desafío consta de 3 componentes 
     1-lista-usuarios
